@@ -2,7 +2,7 @@
 
 Kanban board to track job applications from wishlist to offer, with per-user accounts.
 
-[Live demo](https://your-app.vercel.app)
+[Live demo](https://job-application-monitoring.vercel.app)
 
 ![Board](./docs/board.png)
 
