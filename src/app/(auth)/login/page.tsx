@@ -22,7 +22,7 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="mx-auto mt-24 grid max-w-sm gap-3 p-6">
+    <main className="mx-auto mt-24 grid max-w-sm gap-3 rounded-lg border border-gray-300 bg-white p-6 shadow-sm">
       <h1 className="text-xl font-semibold">Login</h1>
       <form onSubmit={onSubmit} className="grid gap-3">
         <input name="email" type="email" placeholder="Email" required />
