@@ -27,7 +27,8 @@ async function api<T>(url: string, init?: RequestInit): Promise<T> {
     throw new Error(
       (await res.json().catch(() => null))?.error ?? "Request failed",
     );
-  return res.json();
+  const text = await res.text();
+  return (text ? JSON.parse(text) : null) as T;
 }
 
 export const useApplications = () =>
@@ -75,6 +76,6 @@ export function useDelete() {
   return useMutation({
     mutationFn: (id: string) =>
       api(`/api/applications/${id}`, { method: "DELETE" }),
-    onSuccess: () => qc.invalidateQueries({ queryKey: KEY }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: KEY, exact: true }),
   });
 }
