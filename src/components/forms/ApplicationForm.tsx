@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import { STATUSES } from "@/lib/constants";
 import { useSave, type Application } from "@/hooks/useApplications";
 
+const field = "grid gap-1 text-sm";
+
 export default function ApplicationForm({ app }: { app?: Application }) {
   const router = useRouter();
   const save = useSave(app?.id);
@@ -17,45 +19,42 @@ export default function ApplicationForm({ app }: { app?: Application }) {
 
   return (
     <form onSubmit={onSubmit} className="grid max-w-lg gap-3">
-      <input
-        name="company"
-        placeholder="Company"
-        defaultValue={app?.company}
-        required
-      />
-      <input
-        name="position"
-        placeholder="Position"
-        defaultValue={app?.position}
-        required
-      />
-      <input
-        name="link"
-        type="url"
-        placeholder="Job link"
-        defaultValue={app?.link ?? ""}
-      />
-      <input
-        name="salary"
-        placeholder="Salary"
-        defaultValue={app?.salary ?? ""}
-      />
-      <input
-        name="deadline"
-        type="date"
-        defaultValue={app?.deadline?.slice(0, 10)}
-      />
-      <select name="status" defaultValue={app?.status ?? "WISHLIST"}>
-        {STATUSES.map((s) => (
-          <option key={s}>{s}</option>
-        ))}
-      </select>
-      <textarea
-        name="notes"
-        rows={5}
-        placeholder="Notes / interview notes"
-        defaultValue={app?.notes ?? ""}
-      />
+      <label className={field}>
+        Company
+        <input name="company" defaultValue={app?.company} required />
+      </label>
+      <label className={field}>
+        Position
+        <input name="position" defaultValue={app?.position} required />
+      </label>
+      <label className={field}>
+        Job link
+        <input name="link" type="url" defaultValue={app?.link ?? ""} />
+      </label>
+      <label className={field}>
+        Salary (IDR)
+        <input name="salary" defaultValue={app?.salary ?? ""} />
+      </label>
+      <label className={field}>
+        Deadline
+        <input
+          name="deadline"
+          type="date"
+          defaultValue={app?.deadline?.slice(0, 10)}
+        />
+      </label>
+      <label className={field}>
+        Status
+        <select name="status" defaultValue={app?.status ?? "WISHLIST"}>
+          {STATUSES.map((s) => (
+            <option key={s}>{s}</option>
+          ))}
+        </select>
+      </label>
+      <label className={field}>
+        Notes
+        <textarea name="notes" rows={5} defaultValue={app?.notes ?? ""} />
+      </label>
       {save.error && (
         <p className="text-sm text-red-500">{save.error.message}</p>
       )}
