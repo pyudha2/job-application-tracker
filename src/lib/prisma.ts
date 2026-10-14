@@ -11,6 +11,7 @@ const adapter = new PrismaMariaDb({
   database: process.env.DATABASE_NAME,
   connectionLimit: 2,
   ssl: process.env.DATABASE_CA ? { ca: process.env.DATABASE_CA } : undefined,
+  connectTimeout: 10000,
 });
 
 export const prisma = globalForPrisma.prisma ?? new PrismaClient({ adapter });
