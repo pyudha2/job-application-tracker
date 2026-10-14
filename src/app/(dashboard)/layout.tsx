@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import QueryProvider from "@/providers/QueryProvider";
+import LogoutButton from "@/components/LogoutButton";
 
 export default async function DashboardLayout({
   children,
@@ -15,9 +16,7 @@ export default async function DashboardLayout({
     <QueryProvider>
       <nav className="flex gap-4 border-b bg-white px-6 py-3 text-sm">
         <Link href="/board">Board</Link>
-        <Link href="/api/auth/signout" className="ml-auto">
-          Logout
-        </Link>
+        <LogoutButton />
       </nav>
       <main className="p-6">{children}</main>
     </QueryProvider>
