@@ -17,7 +17,10 @@ export default function RegisterPage() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
-    if (!res.ok) return setError((await res.json()).error);
+    if (!res.ok)
+      return setError(
+        (await res.json().catch(() => null))?.error ?? "Gagal mendaftar",
+      );
     await signIn("credentials", { ...body, redirect: false });
     router.push("/board");
   }
