@@ -15,7 +15,6 @@ export default async function DashboardLayout({
     <QueryProvider>
       <nav className="flex gap-4 border-b bg-white px-6 py-3 text-sm">
         <Link href="/board">Board</Link>
-        <Link href="/stats">Stats</Link>
         <Link href="/api/auth/signout" className="ml-auto">
           Logout
         </Link>
